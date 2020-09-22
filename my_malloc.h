@@ -35,25 +35,34 @@ void *my_malloc(size_t size) {
                 my_list->flink = &my_list + next;
                 my_list->flink->size = 8192 - my_list->size;
             }
-            return (&my_list + 8);
+            return &my_list + 8;
         } else {
             my_list = sbrk(calcSize(size));
 
             my_list->size = calcSize(size);
             my_list->flink = NULL;
 
-            return (&my_list + 8);
+            return &my_list + 8;
         }
     } else {
         // when it already exists, traverse the linked list
         while (my_list->flink != NULL) {
             int size_of_node = my_list->size;
+            int real_size = calcSize(size);
 
-            if (size_of_node > size) {
+            if (size_of_node > real_size) {
                 // case 1: when we can find the node for memory, but we need to split
+
+                int next = size_of_node - real_size;
+                my_list->size = real_size;
+                my_list->flink = &my_list + next;
+                return &my_list + 8;
 
             } else if (size_of_node == size) {
                 // case 2: when we can find the node for memory, we do not need to split
+
+                return &my_list + 8;
+
             } else {
                 my_list = my_list->flink;
                 // case 3: go to the next node
@@ -61,6 +70,7 @@ void *my_malloc(size_t size) {
 
         }
         // no free space, we have to create a new chunk
+
 
 
 
