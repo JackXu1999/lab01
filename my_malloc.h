@@ -16,43 +16,66 @@
 typedef enum {MYNOERROR, MYENOMEM, MYBADFREEPTR} MyErrorNo;
 extern MyErrorNo my_errno;
 
-Freelistnode my_list = NULL;
+Freelistnode my_list;
 
 //my_malloc: returns a pointer to a chunk of heap allocated memory
 void *my_malloc(size_t size) {
     if (my_list == NULL) {
-        // when it does not exist
+        // when it does not exist, add the first node to the linked list
         if (size + 8 <= 8192) {
             my_list = sbrk(8192);
+            // the minimum size is 8192
 
             my_list->size = calcSize(size);
             my_list->flink = NULL;
 
             // need to split the free space
-
-            return (my_list + 8);
+            int next = split(size);
+            if (size > 0) {
+                my_list->flink = &my_list + next;
+                my_list->flink->size = 8192 - my_list->size;
+            }
+            return (&my_list + 8);
         } else {
-            my_list = sbrk(size);
+            my_list = sbrk(calcSize(size));
 
             my_list->size = calcSize(size);
             my_list->flink = NULL;
 
-            return (my_list + 8);
+            return (&my_list + 8);
         }
     } else {
-        // when it already exists
+        // when it already exists, traverse the linked list
+        while (my_list->flink != NULL) {
+            int size_of_node = my_list->size;
 
-        // case 1: when we can find the node for memory
-        while (my_list)
+            if (size_of_node > size) {
+                // case 1: when we can find the node for memory, but we need to split
+
+            } else if (size_of_node == size) {
+                // case 2: when we can find the node for memory, we do not need to split
+            } else {
+                my_list = my_list->flink;
+                // case 3: go to the next node
+            }
+
+        }
+        // no free space, we have to create a new chunk
 
 
-        // case 2: when we cannot find the node for memory
+
         
     }
 }
 
-void split(FreeListNode *pointer, size_t size) {
-    
+int split(size_t size) {
+    int diff = 8192 - size;
+    if (diff < 16) {
+        return 0;
+    } else {
+        return 8192 - size;
+    }
+
 }
 
 int calcSize(int size) {
