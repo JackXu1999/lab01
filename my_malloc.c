@@ -125,11 +125,6 @@ void my_free(void *ptr) {
 
 }
 
-//struct freelistnode: node for linked list of 'free' chunks
-typedef struct freelistnode {
-    struct freelistnode *flink; //pointer to next free chunk node
-    size_t size; //size of current chunk
-} * FreeListNode;
 
 //free_list_begin(): returns pointer to first chunk in free list
 FreeListNode free_list_begin(void) {
