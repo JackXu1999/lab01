@@ -58,7 +58,7 @@ void *my_malloc(size_t size) {
                 *check = 100;
 
                 my_list = NULL;
-                return &my_list + my_list->size + 8;
+                return sbrk(0) + my_list->size + 8;
             }
 
         } else {
@@ -78,7 +78,7 @@ void *my_malloc(size_t size) {
 
             // don't put anything on the freelist
             my_list = NULL;
-            return &my_list + my_list->size + 8;
+            return sbrk(0) + my_list->size + 8;
         }
     } else {
         // when it already exists, traverse the linked list, my_list != NULL
@@ -197,25 +197,41 @@ void my_free(void *ptr) {
     // TODO the pointers needs to be fixed
     if (*(int*)(ptr - 4) == 100) {
 
-        size_of_chunk = *(int*)(ptr - 8);
+        size_of_chunk = *(char*)(ptr - 8);
 
         // ptr is between first node address and second node address
-        if ((void *)ptr < (void *)node->flink) {
-            new_node = (FreeListNode) sbrk(size_of_chunk);
-            new_node->size = size_of_chunk;
 
-            new_node->flink = node->flink;
-            node->flink = new_node;
+        // TODO what if  node->flink does not exist
+
+        // nothing on the list
+        if (my_list == NULL) {
+            my_list = (FreeListNode) ptr;
+            my_list->size = size_of_chunk;
+            my_list->flink = NULL;
             return;
+        } else if (my_list->flink == NULL) {
+            // only head on the list
+
+            if ((void *)ptr < ((void *)my_list + my_list->size)) {
+                my_list->size += size_of_chunk;
+                return;
+            } else {
+                new_node = (FreeListNode) ptr;
+                new_node->size = size_of_chunk;
+                my_list->flink = new_node;
+                new_node->flink = NULL;
+                return;
+            }
+
         }
 
-        while (node != NULL) {
+        while (node->flink != NULL) {
             prev = node;
             node = node->flink;
 
             // address of ptr is in between the address of prev and node
             if ((void *)ptr < (void *)node && (void *)ptr >= (void *)prev) {
-                new_node = (FreeListNode) sbrk(size_of_chunk);
+                new_node = (FreeListNode) ptr;
                 new_node->size = size_of_chunk;
 
                 new_node->flink = node;
@@ -224,10 +240,12 @@ void my_free(void *ptr) {
             }
         }
 
-        // now, node = NULL, prev = last node in the list
-        node = sbrk(size_of_chunk);
-        node->size = size_of_chunk;
-        node->flink = NULL;
+        // now, node->flink = NULL
+        new_node = (FreeListNode) ptr;
+        new_node->size = size_of_chunk;
+
+        new_node->flink = NULL;
+        node->flink = new_node;
         return;
 
 
