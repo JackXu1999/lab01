@@ -31,7 +31,7 @@ int main(int argc, char* agrv[]){
     FreeListNode fhead = free_list_begin(); // fhead should be NULL here
 
     for (int i = 0; i < 3; i++){
-        
+
         p[i] = (int*) my_malloc(sizeof(int) * sizes[i]); //chunk size is 4 * sizes[i]
         fhead = free_list_begin();
         print_free_list(fhead);

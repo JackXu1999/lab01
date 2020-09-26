@@ -15,6 +15,7 @@ int calcSize(size_t size) {
 //my_malloc: returns a pointer to a chunk of heap allocated memory
 void *my_malloc(size_t size) {
 
+
     if (size < 0) {
 //        my_errno = MYNOERROR;
         return NULL;
@@ -29,7 +30,7 @@ void *my_malloc(size_t size) {
             my_list->flink = NULL;
 
             // need to split the free space
-            if (8912 - calcSize(size) > 16) {
+            if (8912 - calcSize(size) >= 16) {
                 my_list->size = 8192 - calcSize(size);
 
                 // put size and checksum before the return address
@@ -41,7 +42,7 @@ void *my_malloc(size_t size) {
                 check = (int*)((void*)my_list + my_list->size + 4);
                 *check = 100;
 
-                return &my_list + my_list->size + 8;
+                return (char *)my_list + my_list->size + 8;
 
             } else {
                 // don't put anything on the freelist
@@ -58,10 +59,11 @@ void *my_malloc(size_t size) {
                 *check = 100;
 
                 my_list = NULL;
-                return sbrk(0) + my_list->size + 8;
+                return (char *)sbrk(0) + my_list->size + 8;
             }
 
         } else {
+
             my_list = (FreeListNode)sbrk(calcSize(size));
 
             my_list->size = 0;
@@ -78,7 +80,7 @@ void *my_malloc(size_t size) {
 
             // don't put anything on the freelist
             my_list = NULL;
-            return sbrk(0) + my_list->size + 8;
+            return (char*)sbrk(0) + my_list->size + 8;
         }
     } else {
         // when it already exists, traverse the linked list, my_list != NULL
@@ -95,7 +97,7 @@ void *my_malloc(size_t size) {
             int size_of_node = node->size;
             int real_size = calcSize(size);
 
-            if (size_of_node - real_size > 16) {
+            if (size_of_node - real_size >= 16) {
                 // case 1: when we can find the node for memory, but we need to split
                 node->size = size_of_node - real_size;
 
@@ -108,7 +110,7 @@ void *my_malloc(size_t size) {
                 check = (int*)((void*)node + node->size + 4);
                 *check = 100;
 
-                return &my_list + my_list->size + 8;
+                return (char *)my_list + my_list->size + 8;
 
             } else if (size_of_node - real_size > 0) {
                 // case 2: we return the whole chuck to the user and remove it on the list
@@ -127,14 +129,14 @@ void *my_malloc(size_t size) {
                 // node is not the first node, remove node from the list
                 prev->flink = node->flink;
 
+                node = NULL;
+                return (char *)sbrk(0) + my_list->size + 8;
 
-                return &my_list + my_list->size + 8;
-
-            } else {
+            }
                 prev = node;
                 node = node->flink;
                 // go to the next node
-            }
+
 
         }
         // no free space, we have to create a new chunk and link it to the the list
@@ -147,7 +149,7 @@ void *my_malloc(size_t size) {
             node->flink = NULL;
 
             // need to split the free space
-            if (8912 - calcSize(size) > 16) {
+            if (8912 - calcSize(size) >= 16) {
                 node->size = 8192 - calcSize(size);
 
 
@@ -160,7 +162,8 @@ void *my_malloc(size_t size) {
                 check = (int *) ((void *) node + node->size + 4);
                 *check = 100;
 
-                return &node + node->size + 8;
+                prev->flink = node;
+                return (char *)node + node->size + 8;
 
             } else {
                 // don't put anything on the freelist
@@ -177,16 +180,33 @@ void *my_malloc(size_t size) {
                 *check = 100;
 
                 prev->flink = NULL;
-
-                return &node + node->size + 8;
+                return (char *)sbrk(0) + node->size + 8;
             }
+        } else {
+            node = (FreeListNode)sbrk(calcSize(size));
+
+            node->size = 0;
+            node->flink = NULL;
+
+            // put size and checksum before the return address
+            int *return_size;
+            return_size = (int *) ((void *) node + node->size);
+            *return_size = calcSize(size); // size to go in to the address
+
+            int *check;
+            check = (int *) ((void *) node + node->size + 4);
+            *check = 100;
+
+            // don't put anything on the freelist
+            prev->flink = NULL;
+            return sbrk(0) + my_list->size + 8;
         }
     }
 }
 
 //my_free: reclaims the previously allocated chunk referenced by ptr
 void my_free(void *ptr) {
-    int size_of_chunk;
+    size_t size_of_chunk;
     struct freelistnode *new_node;
     struct freelistnode *node;
     struct  freelistnode *prev;
@@ -195,9 +215,9 @@ void my_free(void *ptr) {
     prev = NULL;
 
     // TODO the pointers needs to be fixed
-    if (*(int*)(ptr - 4) == 100) {
+    if ((*(char*)(ptr - 4)) == 100) {
 
-        size_of_chunk = *(char*)(ptr - 8);
+        size_of_chunk = *(size_t*)(char*)(ptr - 8);
 
         // ptr is between first node address and second node address
 
@@ -209,28 +229,24 @@ void my_free(void *ptr) {
             my_list->size = size_of_chunk;
             my_list->flink = NULL;
             return;
-        } else if (my_list->flink == NULL) {
-            // only head on the list
 
-            if ((void *)ptr < ((void *)my_list + my_list->size)) {
-                my_list->size += size_of_chunk;
-                return;
-            } else {
-                new_node = (FreeListNode) ptr;
-                new_node->size = size_of_chunk;
-                my_list->flink = new_node;
-                new_node->flink = NULL;
-                return;
-            }
+        } else if (my_list->flink == NULL) {
+             // only head on the list
+
+            new_node = (FreeListNode) ptr;
+            new_node->size = size_of_chunk;
+            my_list->flink = new_node;
+            new_node->flink = NULL;
+            return;
 
         }
 
-        while (node->flink != NULL) {
+        while (node != NULL) {
             prev = node;
             node = node->flink;
 
             // address of ptr is in between the address of prev and node
-            if ((void *)ptr < (void *)node && (void *)ptr >= (void *)prev) {
+            if ((void*)ptr >= (void *)prev && ptr <= (void *)node) {
                 new_node = (FreeListNode) ptr;
                 new_node->size = size_of_chunk;
 
@@ -240,12 +256,12 @@ void my_free(void *ptr) {
             }
         }
 
-        // now, node->flink = NULL
+        // now, node = NULL
         new_node = (FreeListNode) ptr;
         new_node->size = size_of_chunk;
 
         new_node->flink = NULL;
-        node->flink = new_node;
+        prev->flink = new_node;
         return;
 
 
