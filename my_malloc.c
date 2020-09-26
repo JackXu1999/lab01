@@ -2,7 +2,9 @@
 #include <stddef.h>
 #include "my_malloc.h"
 
-struct freelistnode *my_list;
+FreeListNode my_list = NULL;
+
+MyErrorNo my_errno;
 
 int calcSize(size_t size);
 
@@ -17,7 +19,7 @@ void *my_malloc(size_t size) {
 
 
     if (size < 0) {
-//        my_errno = MYNOERROR;
+        my_errno = MYENOMEM;
         return NULL;
     }
 
@@ -30,7 +32,7 @@ void *my_malloc(size_t size) {
             my_list->flink = NULL;
 
             // need to split the free space
-            if (8912 - calcSize(size) >= 16) {
+            if (8192 - calcSize(size) >= 16) {
                 my_list->size = 8192 - calcSize(size);
 
                 // put size and checksum before the return address
@@ -59,7 +61,7 @@ void *my_malloc(size_t size) {
                 *check = 100;
 
                 my_list = NULL;
-                return (char *)sbrk(0) + my_list->size + 8;
+                return (char *)sbrk(0) + 8;
             }
 
         } else {
@@ -80,7 +82,7 @@ void *my_malloc(size_t size) {
 
             // don't put anything on the freelist
             my_list = NULL;
-            return (char*)sbrk(0) + my_list->size + 8;
+            return (char*)sbrk(0) + 8;
         }
     } else {
         // when it already exists, traverse the linked list, my_list != NULL
@@ -130,7 +132,7 @@ void *my_malloc(size_t size) {
                 prev->flink = node->flink;
 
                 node = NULL;
-                return (char *)sbrk(0) + my_list->size + 8;
+                return (char *)sbrk(0) + 8;
 
             }
                 prev = node;
@@ -179,8 +181,9 @@ void *my_malloc(size_t size) {
                 check = (int *) ((void *) node + node->size + 4);
                 *check = 100;
 
+                node = NULL;
                 prev->flink = NULL;
-                return (char *)sbrk(0) + node->size + 8;
+                return (char *)sbrk(0) + 8;
             }
         } else {
             node = (FreeListNode)sbrk(calcSize(size));
@@ -197,9 +200,10 @@ void *my_malloc(size_t size) {
             check = (int *) ((void *) node + node->size + 4);
             *check = 100;
 
+            node = NULL;
             // don't put anything on the freelist
             prev->flink = NULL;
-            return sbrk(0) + my_list->size + 8;
+            return sbrk(0) + 8;
         }
     }
 }
@@ -221,7 +225,7 @@ void my_free(void *ptr) {
 
         // ptr is between first node address and second node address
 
-        // TODO what if  node->flink does not exist
+        // TODO what if node->flink does not exist
 
         // nothing on the list
         if (my_list == NULL) {
@@ -231,13 +235,25 @@ void my_free(void *ptr) {
             return;
 
         } else if (my_list->flink == NULL) {
-             // only head on the list
+            // only head on the list
 
-            new_node = (FreeListNode) ptr;
-            new_node->size = size_of_chunk;
-            my_list->flink = new_node;
-            new_node->flink = NULL;
-            return;
+            // insert as second node
+            if ((void*)ptr >= (void *)my_list) {
+                new_node = (FreeListNode) ptr;
+                new_node->size = size_of_chunk;
+                my_list->flink = new_node;
+                new_node->flink = NULL;
+                return;
+            } else {
+                // insert as first node;
+                new_node = my_list;
+                my_list = (FreeListNode) ptr;
+                my_list->size = size_of_chunk;
+                my_list->flink = new_node;
+                new_node->flink = NULL;
+                return;
+            }
+
 
         }
 
@@ -266,7 +282,7 @@ void my_free(void *ptr) {
 
 
     } else {
-//        my_errno = MYBADFREEPTR;
+        my_errno = MYBADFREEPTR;
         return;
     }
 }
@@ -279,30 +295,34 @@ FreeListNode free_list_begin(void) {
 
 //coalesce_free_list(): merge adjacent chunks on the free list
 
-// TODO need to modify this
 void coalesce_free_list(void) {
     // there is nothing in the list
+
+    struct freelistnode *node;
+
     if (my_list == NULL) {
         return;
     }
 
-    // free if and only if they are next to each other
+    node = my_list;
 
-    while (my_list->flink != NULL) {
+    while (node->flink != NULL) {
         // stop until there are no nodes on the list can be merged
-        int current_size = my_list->size;
-        int next_size = my_list->flink->size;
+        int current_size = node->size;
+        int next_size = node->flink->size;
 
         // add up the size
-        my_list->size = current_size + sizeof(my_list->flink);
+        node->size = current_size + next_size;
 
         // set the pointer so that the next node is removed
-        if (my_list->flink->flink != NULL) {
-            my_list->flink = my_list->flink->flink;
+        if (node->flink->flink != NULL) {
+            node->flink = node->flink->flink;
         } else {
-            my_list->flink = NULL;
+            node->flink = NULL;
         }
 
     }
+
+
 }
 

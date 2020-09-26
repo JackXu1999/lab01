@@ -41,6 +41,8 @@ int main(int argc, char* agrv[]){
         print_free_list(fhead);
     }
 
+    coalesce_free_list();
+
     /*
     * If your implementation is correct, you should print the following information
     * freelist: 8144 
