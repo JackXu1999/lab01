@@ -311,18 +311,24 @@ void coalesce_free_list(void) {
         int current_size = node->size;
         int next_size = node->flink->size;
 
-        // add up the size
-        node->size = current_size + next_size;
+        if (node + node->size == node->flink) {
+            // add up the size
+            node->size = current_size + next_size;
 
-        // set the pointer so that the next node is removed
-        if (node->flink->flink != NULL) {
-            node->flink = node->flink->flink;
+            // set the pointer so that the next node is removed
+            if (node->flink->flink != NULL) {
+                node->flink = node->flink->flink;
+            } else {
+                node->flink = NULL;
+            }
         } else {
-            node->flink = NULL;
+            node = node->flink;
         }
 
-    }
 
+
+    }
+    return;
 
 }
 
