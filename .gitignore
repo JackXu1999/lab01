@@ -1,2 +1,4 @@
-*.o
-*.swp
+main_demo.o
+my_malloc.o
+my_malloc
+_main_demo.c.swp
