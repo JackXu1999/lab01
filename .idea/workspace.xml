@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated />
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="53b431a7-01c5-4ffe-9370-cbaacb90a78d" name="Default Changelist" comment="removed unnecessary files">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1hrZxPNyFxO5fFNZzJY3Ac6nTMW" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="cf.first.check.clang-format" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs.jest.jest_package" value="" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="53b431a7-01c5-4ffe-9370-cbaacb90a78d" name="Default Changelist" comment="" />
+      <created>1600771418915</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600771418915</updated>
+      <workItem from="1600771420849" duration="2022000" />
+      <workItem from="1600779639768" duration="7026000" />
+      <workItem from="1600838874018" duration="7346000" />
+      <workItem from="1600876959102" duration="5719000" />
+      <workItem from="1600885824728" duration="1735000" />
+      <workItem from="1600942806221" duration="1523000" />
+      <workItem from="1600951257396" duration="11916000" />
+      <workItem from="1601012779632" duration="11480000" />
+      <workItem from="1601032278687" duration="2537000" />
+      <workItem from="1601043799588" duration="7354000" />
+      <workItem from="1601057578940" duration="3224000" />
+      <workItem from="1601095691481" duration="10542000" />
+      <workItem from="1601116039824" duration="2065000" />
+      <workItem from="1601127779919" duration="5929000" />
+      <workItem from="1601205301779" duration="1090000" />
+      <workItem from="1601214157035" duration="1192000" />
+      <workItem from="1601268074140" duration="1330000" />
+      <workItem from="1601299777261" duration="3089000" />
+      <workItem from="1602050419496" duration="12000" />
+      <workItem from="1604470754543" duration="303000" />
+    </task>
+    <task id="LOCAL-00001" summary="second commit">
+      <created>1600773170168</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1600773170168</updated>
+    </task>
+    <task id="LOCAL-00002" summary="third commit">
+      <created>1600788440284</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1600788440284</updated>
+    </task>
+    <task id="LOCAL-00003" summary="fourth commit">
+      <created>1600847076197</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1600847076197</updated>
+    </task>
+    <task id="LOCAL-00004" summary="fifth commit">
+      <created>1600882358490</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1600882358491</updated>
+    </task>
+    <task id="LOCAL-00005" summary="add Makefile and fix minor bugs">
+      <created>1600943374360</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1600943374360</updated>
+    </task>
+    <task id="LOCAL-00006" summary="fixed pointer bugs after talking with the prof">
+      <created>1600967682881</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1600967682881</updated>
+    </task>
+    <task id="LOCAL-00007" summary="try to solve core dump">
+      <created>1601048273357</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1601048273357</updated>
+    </task>
+    <task id="LOCAL-00008" summary="60% correct">
+      <created>1601107431512</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1601107431512</updated>
+    </task>
+    <task id="LOCAL-00009" summary="add gitignore">
+      <created>1601300027672</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1601300027672</updated>
+    </task>
+    <task id="LOCAL-00010" summary="add gitignore">
+      <created>1601300329505</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1601300329505</updated>
+    </task>
+    <task id="LOCAL-00011" summary="add gitignore">
+      <created>1601300646300</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1601300646300</updated>
+    </task>
+    <task id="LOCAL-00012" summary="removed unnecessary files">
+      <created>1601300885178</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1601300885178</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="second commit" />
+    <MESSAGE value="third commit" />
+    <MESSAGE value="fourth commit" />
+    <MESSAGE value="fifth commit" />
+    <MESSAGE value="add Makefile and fix minor bugs" />
+    <MESSAGE value="fixed pointer bugs after talking with the prof" />
+    <MESSAGE value="try to solve core dump" />
+    <MESSAGE value="60% correct" />
+    <MESSAGE value="add gitignore" />
+    <MESSAGE value="removed unnecessary files" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed unnecessary files" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="72" y="292" width="1084" height="736" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1601024528393">
+      <screen x="72" y="27" width="1144" height="1173" />
+    </state>
+    <state x="72" y="310" key="#com.intellij.execution.impl.EditConfigurationsDialog/72.27.1047.1251@72.27.1047.1251" timestamp="1600880942537" />
+    <state x="72" y="292" width="1084" height="736" key="#com.intellij.execution.impl.EditConfigurationsDialog/72.27.1144.1173@72.27.1144.1173" timestamp="1601024528393" />
+    <state x="454" y="406" width="309" height="489" key="EnvironmentVariablesDialog" timestamp="1601024459454">
+      <screen x="72" y="27" width="1144" height="1173" />
+    </state>
+    <state x="454" y="406" width="309" height="489" key="EnvironmentVariablesDialog/72.27.1144.1173@72.27.1144.1173" timestamp="1601024459454" />
+    <state x="602" y="382" width="374" height="514" key="FileChooserDialogImpl" timestamp="1602050426132">
+      <screen x="72" y="27" width="1816" height="1159" />
+    </state>
+    <state x="378" y="410" width="424" height="491" key="FileChooserDialogImpl/72.27.1047.1251@72.27.1047.1251" timestamp="1600881027949" />
+    <state x="406" y="386" width="424" height="520" key="FileChooserDialogImpl/72.27.1144.1173@72.27.1144.1173" timestamp="1601024497208" />
+    <state x="602" y="382" key="FileChooserDialogImpl/72.27.1816.1159@72.27.1816.1159" timestamp="1602050426132" />
+    <state x="353" y="382" width="374" height="514" key="FileChooserDialogImpl/72.27.963.1159@72.27.963.1159" timestamp="1601306140982" />
+    <state width="985" height="291" key="GridCell.Tab.0.bottom" timestamp="1601024520104">
+      <screen x="72" y="27" width="1144" height="1173" />
+    </state>
+    <state width="985" height="291" key="GridCell.Tab.0.bottom/72.27.1144.1173@72.27.1144.1173" timestamp="1601024520104" />
+    <state width="985" height="291" key="GridCell.Tab.0.center" timestamp="1601024520103">
+      <screen x="72" y="27" width="1144" height="1173" />
+    </state>
+    <state width="985" height="291" key="GridCell.Tab.0.center/72.27.1144.1173@72.27.1144.1173" timestamp="1601024520103" />
+    <state width="985" height="291" key="GridCell.Tab.0.left" timestamp="1601024520102">
+      <screen x="72" y="27" width="1144" height="1173" />
+    </state>
+    <state width="985" height="291" key="GridCell.Tab.0.left/72.27.1144.1173@72.27.1144.1173" timestamp="1601024520102" />
+    <state width="985" height="291" key="GridCell.Tab.0.right" timestamp="1601024520104">
+      <screen x="72" y="27" width="1144" height="1173" />
+    </state>
+    <state width="985" height="291" key="GridCell.Tab.0.right/72.27.1144.1173@72.27.1144.1173" timestamp="1601024520104" />
+    <state x="89" y="292" width="1022" height="737" key="SettingsEditor" timestamp="1600771752373">
+      <screen x="72" y="27" width="1057" height="1260" />
+    </state>
+    <state x="89" y="292" width="1022" height="737" key="SettingsEditor/72.27.1057.1260@72.27.1057.1260" timestamp="1600771752373" />
+    <state x="257" y="373" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1601300889826">
+      <screen x="72" y="27" width="1597" height="1190" />
+    </state>
+    <state x="194" y="390" width="528" height="532" key="Vcs.Push.Dialog.v2/72.27.1047.1251@72.27.1047.1251" timestamp="1600882363171" />
+    <state x="195" y="393" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.1057.1260@72.27.1057.1260" timestamp="1600788444388" />
+    <state x="205" y="368" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.1144.1173@72.27.1144.1173" timestamp="1601048278953" />
+    <state x="234" y="375" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.1390.1198@72.27.1390.1198" timestamp="1600943488868" />
+    <state x="257" y="373" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.1597.1190@72.27.1597.1190" timestamp="1601300889826" />
+    <state x="274" y="393" key="Vcs.Push.Dialog.v2/72.27.1738.1260@72.27.1738.1260" timestamp="1600847080957" />
+    <state x="310" y="373" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.2053.1190@72.27.2053.1190" timestamp="1601300082310" />
+    <state x="319" y="381" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.2127.1216@72.27.2127.1216" timestamp="1601107463605" />
+    <state x="539" y="542" width="662" height="170" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1601300326620">
+      <screen x="72" y="27" width="1597" height="1190" />
+    </state>
+    <state x="381" y="572" width="438" height="177" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/72.27.1057.1260@72.27.1057.1260" timestamp="1600771774924" />
+    <state x="539" y="542" width="662" height="170" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/72.27.1597.1190@72.27.1597.1190" timestamp="1601300326620" />
+    <state x="1068" y="373" key="search.everywhere.popup" timestamp="1600886694138">
+      <screen x="72" y="27" width="2165" height="1251" />
+    </state>
+    <state x="1068" y="373" key="search.everywhere.popup/72.27.2165.1251@72.27.2165.1251" timestamp="1600886694138" />
+  </component>
+</project>
